@@ -4,7 +4,7 @@
 
 import os
 import pandas as pd
-from functionsFeatures import *
+from functions.functionsFeatures import *
 
 def check_os(path, audios_names):
     """
