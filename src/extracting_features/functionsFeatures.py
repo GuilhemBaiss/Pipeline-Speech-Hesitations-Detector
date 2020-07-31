@@ -1,3 +1,6 @@
+#@Author : Guilhem Baissus
+#Algorithm written during an internship at Laboratoire d'ingénierie Cognitive Sémantique (Lincs) located in Montreal, Quebec
+#My internship was supervised by Sylvie Ratté
 
 import srt
 import parselmouth

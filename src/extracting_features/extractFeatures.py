@@ -4,7 +4,7 @@
 
 import os
 import pandas as pd
-from functions.functionsFeatures import *
+from extracting_features.functionsFeatures import *
 from functions.commonFunctions import *
 
 

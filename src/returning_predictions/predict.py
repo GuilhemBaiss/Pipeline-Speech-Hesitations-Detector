@@ -1,5 +1,8 @@
+#@Author : Guilhem Baissus
+#Algorithm written during an internship at Laboratoire d'ingénierie Cognitive Sémantique (Lincs) located in Montreal, Quebec
+#My internship was supervised by Sylvie Ratté
 
-from functions.functionsPredict import *
+from returning_predictions.functionsPredict import *
 from functions.commonFunctions import *
 
 
@@ -20,4 +23,4 @@ def mainPredict(path_csv_features_files, path_csv_results, model_name):
                 create_csv(path_csv_file, path_csv_results_file, y)
 
 
-    #return csv_files_processed
+    return csv_files_processed
