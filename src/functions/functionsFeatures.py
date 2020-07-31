@@ -710,7 +710,6 @@ class ExtractFeatures:
         "silence_after_duration" : [],
         "energy_reg" : [],
         "energy_reg_mse" : [],
-        "energy_min" : [],
         "energy_max" : [],
         "energy_mean" :  [],
         "mean_coeff_0" : [],
@@ -842,7 +841,7 @@ class ExtractFeatures:
         data["energy_reg"].append(Features_energy.get_energy_reg_coeff(array_energy))
         data["energy_reg_mse"].append(Features_energy.get_energy_squared_error_reg_coeff(array_energy))
         data["energy_max"].append(Features_energy.get_max_energy(array_energy))
-        data["energy_min"].append(Features_energy.get_min_energy(array_energy))
+        #data["energy_min"].append(Features_energy.get_min_energy(array_energy))
         data['energy_mean'].append(Features_energy.get_mean_energy(array_energy))
 
     @staticmethod
