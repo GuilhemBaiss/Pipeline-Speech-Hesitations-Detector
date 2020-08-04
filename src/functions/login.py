@@ -4,19 +4,7 @@
 import sys
 import os
 
-def check_answer(answer, number_questions):
-    if number_questions ==4:
-        if len(answer) >2 or ( "1" not in answer and "2" not in answer and "3" not in answer and "4" not in answer):
-            return True
-    if number_questions ==3:
-        if len(answer) >2 or ( "1" not in answer and "2" not in answer and "3" not in answer ):
-            return True
-    if number_questions ==2:
-        if len(answer) >2 or ( "1" not in answer and "2" not in answer):
-            return True
-    return False
-
-def login(task,minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name):
+def login(task,minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name, path_dataset, path_to_models, path_csv_annotated):
 
     print("Author : Guilhem Baissus")
     print("Algorithm written during an internship at Laboratoire d'ingénierie Cognitive Sémantique (Lincs) located in Montreal, Quebec. My internship was supervised by Sylvie Ratté")
@@ -44,29 +32,41 @@ def login(task,minimum_silence_duration, size_frame, size_between_frames, number
                 if "1" in answer2 and len(answer2)<2:
                     not_valid_answer3 = True
                     while(not_valid_answer3):
-                        print("the current paths are : \n\t - sound path : {}, \n\t - csv features : {}, \n\t - csv results :  {}".format(path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file))
+                        print("the current paths are : \n\t - sound path : {}, \n\t - csv features : {}, \n\t - csv results :  {},  \n\t - path to dataset :  {},  \n\t - path to trained models:  {}, \n\t - path to annotated csv:  {}".format(path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, path_dataset, path_to_models, path_csv_annotated))
                         print("options : \n")
-                        print(" \t [1] : change sound file path")
-                        print(" \t [2] : change csv features path ")
-                        print(" \t [3] : change csv results path")
-                        print(" \t [4] : done")
-                        print("(1/2/3/4) ? ")
+                        print(" \t [1] : change sound file folder path")
+                        print(" \t [2] : change csv features folder path ")
+                        print(" \t [3] : change csv results folder path")
+                        print(" \t [4] : change dataset folder path")
+                        print(" \t [5] : change trained models folder path")
+                        print(" \t [6] : change annotated csv folder path")
+                        print(" \t [7] : done")
+                        print("(1/2/3/4/5/6/7) ? ")
                         answer3 = input()
                         if "1" in answer3 and len(answer3) < 2:
                             print("enter path to sound file : ")
                             path_to_sound_files = input()
-                        if "2" in answer3 and len(answer3) < 2:
+                        elif "2" in answer3 and len(answer3) < 2:
                             print("enter path to csv features : ")
                             path_to_csv_features_files = input()
-                        if "3" in answer3 and len(answer3) < 2:
+                        elif "3" in answer3 and len(answer3) < 2:
                             print("enter path to csv results : ")
                             path_to_csv_results_file = input()
-                        if "4" in answer3 and len(answer3) < 2:
+                        elif "4" in answer3 and len(answer3) <2:
+                            print("enter path to the dataset file : ")
+                            path_dataset = input()
+                        elif "5" in answer3 and len(answer3) <2:
+                            print("enter path to the trained models folder : ")
+                            path_to_models = input()
+                        elif "6" in answer3 and len(answer3) <2:
+                            print("enter path to the annotated csv folder : ")
+                            path_to_models = input()
+                        elif "7" in answer3 and len(answer3) < 2:
                             not_valid_answer3 = False
-                        if check_answer(answer3, 4):
+                        else:
                             print("{} is not an option".format(answer3))
                 #Change parameters
-                if "2" in answer2 and len(answer2) < 2 :
+                elif "2" in answer2 and len(answer2) < 2 :
                     not_valid_answer4 = True
                     while(not_valid_answer4):
                         print("To understand the parameters, see the documentation")
@@ -80,30 +80,26 @@ def login(task,minimum_silence_duration, size_frame, size_between_frames, number
                         if "silence duration" in answer4 or "minimum" in answer4:
                             print("Enter new value for minimum silence duration :")
                             minimum_silence_duration = input()
-                        if "size frame" in answer4:
+                        elif "size frame" in answer4:
                             print("Enter new value for size frame :")
                             size_frame = input()
-                        if "size between frames" in answer4 or "between" in answer4:
+                        elif "size between frames" in answer4 or "between" in answer4:
                             print("Enter new value for size between frames :")
                             size_between_frames = input()
-                        if "number energy points" in answer4 or "energy" in answer4:
+                        elif "number energy points" in answer4 or "energy" in answer4:
                             print("Enter new value for number energy points :")
                             number_of_energy_points = input()
-                        if "number stability distances " in answer4 or "stability" in answer4 or "distances" in answer4:
+                        elif "number stability distances " in answer4 or "stability" in answer4 or "distances" in answer4:
                             print("Enter new value for number stability distances :")
                             number_of_stability_distances = input()
-                        if "2" in answer4:
+                        elif "2" in answer4:
                             not_valid_answer4 = False
                         else:
                             print("{} is not an option".format(answer4))
                 #Change models
-                if "3" in answer2 and len(answer2) < 2:
+                elif "3" in answer2 and len(answer2) < 2:
                     not_valid_answer5 = True
                     while(not_valid_answer5):
-                        if "src" in os.getcwd(): 
-                            path_to_models = os.path.join(os.getcwd(), "trained_models")
-                        else:
-                            path_to_models = os.path.join(os.getcwd(),"src", "trained_models")
                         trained_models_list = os.listdir(path_to_models)
                         print("The following trained models are present :")
                         for models in trained_models_list:
@@ -125,37 +121,35 @@ def login(task,minimum_silence_duration, size_frame, size_between_frames, number
                         if current_model == model_name:
                             print("The model was not changed")    
                 #go back to options
-                if "4" in answer2 and len(answer2) < 2:
+                elif "4" in answer2 and len(answer2) < 2:
                     not_valid_answer2 =  False
-                if check_answer(answer2, 4): 
+                else:
                     print("{} is not an option".format(answer2))       
         #Choose task 
-        if "2" in answer1 and len(answer1) <2:
+        elif "2" in answer1 and len(answer1) <2:
             not_valid_answer6 = True
             while(not_valid_answer6):
                 print("options : \n")
                 print(" \t [1] : get filled pauses from the sound files in a csv")
                 print(" \t [2] : get features from the sound files")
-                print(" \t [3] : train models with a new dataset")
+                print(" \t [3] : create new dataset and train models")
                 print("(1/2/3) ? ")
                 answer6 = input()
+                #get filled pauses
                 if "1" in answer6 and len(answer6) <2:
                     task =1
-                    return task, minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name
-                if "2" in answer6 and len(answer6) <2:
+                    return task, minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name, path_dataset, path_to_models, path_csv_annotated
+                #get only features
+                elif "2" in answer6 and len(answer6) <2:
                     task =2
-                    return task, minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name
-                if "3" in answer6 and len(answer6) <2:
+                    return task, minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name, path_dataset, path_to_models, path_csv_annotated
+                #create new dataset and train models
+                elif "3" in answer6 and len(answer6) <2:
                     task =3
-                    #STUFF
-                    #
-                    #
-                    #
-                    #
-                    return task, minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name
-                if check_answer(answer6, 3):
+                    return task, minimum_silence_duration, size_frame, size_between_frames, number_of_energy_points, number_of_stability_distances, path_to_sound_files, path_to_csv_features_files, path_to_csv_results_file, model_name, path_dataset, path_to_models, path_csv_annotated
+                else:
                     print("{} is not an option".format(answer6))
 
-        if check_answer(answer1, 2):
+        else:
             print("{} is not an option".format(answer1))
     

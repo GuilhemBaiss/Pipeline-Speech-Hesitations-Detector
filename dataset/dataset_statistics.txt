@@ -1,0 +1,13 @@
+Statistics of 'dataset': 
+ 
+ dataset size : 1834 
+number of FP in dataset : 917.0 
+number of NFP in dataset : 917.0 
+
+ Statistics from all the csv files used to create 'dataset' 
+
+ number of csv files in the folder : 50 
+total number of FP : 917.0 
+total number of NFP : 5351 
+average number of FP per csv file : 18.34 
+average number of NFP per csv file : 107.02 
